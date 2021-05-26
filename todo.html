@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Todo App</title>
+    <link rel="stylesheet" href="assets/styles/styles.css" />
+    <script defer src="assets/scripts/todo.js"></script>
+  </head>
+  <body>
+    <div class="todo-app">
+      <header class="todo-app__header">
+        <form action="#" class="todo-app__form">
+          <label for="todo-app__form-input" class="todo-app__form-label"
+            >What needs to be done?</label
+          >
+          <input
+            type="text"
+            id="todo-app__form-input"
+            class="todo-app__form-input"
+          />
+          <button class="btn todo-app__form-btn">Add</button>
+        </form>
+      </header>
+
+      <main class="todo-app__todos">
+        <div class="todo-app__state-btns">
+          <button
+            class="btn todo-app__state-btn todo-app__state-btn--active"
+            data-state="all"
+          >
+            All
+          </button>
+          <button class="btn todo-app__state-btn" data-state="active">
+            Active
+          </button>
+          <button class="btn todo-app__state-btn" data-state="completed">
+            Completed
+          </button>
+        </div>
+        <h2 class="todo-app__todos-completed">2 out of 3 items completed</h2>
+
+        <ul class="todo-app__list"></ul>
+      </main>
+    </div>
+  </body>
+</html>

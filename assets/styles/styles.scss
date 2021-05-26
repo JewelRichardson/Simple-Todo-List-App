@@ -1,0 +1,306 @@
+// VARIABLES
+$color-grey-light-1: #ccc;
+$color-grey-light-2: #ddd;
+$color-grey-light-3: #eee;
+
+$color-grey-dark-1: #777;
+$color-grey-dark-2: #333;
+$color-grey-dark-3: #111;
+
+$color-danger: #e65050;
+$color-danger-dark: #be3d3d;
+
+$color-white: #fff;
+$color-black: #000;
+
+// MEDIA QUERY MANAGER
+@mixin respond($breakpoint) {
+  @if ($breakpoint == phone) {
+    @media only screen and (max-width: 37.5em) {
+      @content;
+    }
+  }
+  @if ($breakpoint == tab-port) {
+    @media only screen and (max-width: 56.25em) {
+      @content;
+    }
+  }
+  @if ($breakpoint == tab-land) {
+    @media only screen and (max-width: 75em) {
+      @content;
+    }
+  }
+  @if ($breakpoint == big-desktop) {
+    @media only screen and (min-width: 112.5em) {
+      @content;
+    }
+  }
+}
+
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: inherit;
+}
+
+html {
+  font-size: 62.5%;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: sans-serif;
+  font-size: 1.6rem;
+  font-weight: 400;
+  color: $color-grey-dark-1;
+  background-color: $color-grey-light-1;
+  line-height: 1.6;
+  min-height: 100vh;
+  padding: 1rem;
+
+  @include respond(phone) {
+    padding: 0rem;
+  }
+}
+
+button {
+  display: block;
+  border: none;
+  padding: 1rem 0;
+
+  &:focus {
+    outline: none;
+  }
+}
+
+input {
+  display: block;
+  width: 100%;
+  padding: 2rem;
+  color: $color-grey-dark-2;
+  font-size: inherit;
+}
+
+.btn {
+  font-size: 1.7rem;
+  border: 1px solid $color-grey-light-1;
+  background-color: transparent;
+  transition: all 0.3s ease;
+
+  @include respond(phone) {
+    font-size: 1.2rem;
+  }
+
+  &--edit,
+  &--cancel {
+    border-color: $color-grey-dark-2;
+  }
+
+  &--save {
+    background-color: $color-grey-dark-3;
+    color: $color-grey-light-3;
+  }
+
+  &--delete {
+    background-color: $color-danger;
+    color: $color-grey-light-3;
+
+    &:hover {
+      background-color: $color-danger-dark;
+    }
+  }
+
+  &:hover {
+    // border: 1px solid $color-black;
+  }
+}
+
+.todo-app {
+  max-width: 114rem;
+  margin: 0 auto;
+  padding: 4rem;
+  background-color: $color-white;
+
+  @include respond(phone) {
+    padding: 4rem 0rem;
+  }
+
+  &__header {
+  }
+
+  &__form {
+    width: 80%;
+    margin: 0 auto;
+
+    & > * {
+      display: block;
+      margin-bottom: 1rem;
+    }
+
+    &-label {
+      text-align: center;
+    }
+
+    &-input {
+      height: 4rem;
+      border: 2px solid $color-black;
+
+      &:focus {
+        border-radius: 0;
+      }
+    }
+
+    &-btn {
+      font-size: 1.7rem;
+      width: 100%;
+      background-color: $color-grey-dark-2;
+      color: $color-grey-light-3;
+
+      &:hover {
+        background-color: $color-black;
+      }
+    }
+  }
+
+  &__state-btns {
+    display: grid;
+    margin: 0 auto;
+    grid-template-columns: repeat(3, 1fr);
+    column-gap: 0.5rem;
+  }
+
+  &__state-btn {
+    background-color: transparent;
+
+    &--active {
+      background-color: $color-black;
+      color: $color-grey-light-3;
+    }
+  }
+
+  &__todos {
+    width: 70%;
+    margin: 1rem auto;
+
+    &-completed {
+      margin: 3rem 0;
+
+      @include respond(phone) {
+        font-size: 2rem;
+      }
+    }
+  }
+
+  &__list {
+    list-style: none;
+  }
+
+  &__item {
+    margin-bottom: 4rem;
+    &-save {
+      display: grid;
+      grid-template-rows: repeat(2, 1fr);
+      grid-template-columns: repeat(2, 1fr);
+      gap: 2rem;
+    }
+
+    &-todo {
+      grid-column: 1 / -1;
+      display: flex;
+      align-items: center;
+    }
+
+    &-checkbox {
+      width: 4rem;
+      height: 4rem;
+      border: 1px solid $color-black;
+      position: relative;
+
+      @include respond(phone) {
+        width: 3rem;
+        height: 3rem;
+      }
+
+      &--completed {
+        &::before,
+        &::after {
+          content: '';
+          height: 2px;
+          background-color: $color-grey-dark-3;
+          position: absolute;
+          transition: all 0.2s ease;
+        }
+
+        &::before {
+          width: 1.5rem;
+          top: 45%;
+          left: 28%;
+          transform: translate(-50%, -50%) rotate(45deg);
+
+          @include respond(phone) {
+            top: 58%;
+            width: 1rem;
+          }
+        }
+
+        &::after {
+          width: 2.5rem;
+          top: 39%;
+          right: -33%;
+          transform: translate(-50%, -50%) rotate(-45deg);
+
+          @include respond(phone) {
+            width: 2rem;
+            top: 44%;
+            right: -38%;
+          }
+        }
+      }
+    }
+
+    &-content {
+      margin-left: 2rem;
+    }
+  }
+
+  &__item-edit {
+    display: none;
+    grid-template-rows: repeat(3, 1fr);
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.5rem;
+  }
+
+  &__item.edit-mode {
+    .todo-app__item-save {
+      display: none;
+    }
+
+    .todo-app__item-edit {
+      display: grid;
+    }
+  }
+
+  &__edit {
+    &-label {
+      //   margin-bottom: -2rem;
+      //   align-self: end;
+      grid-column: 1 / -1;
+      grid-row: 1 / 2;
+    }
+
+    &-input {
+      margin-top: -2rem;
+      grid-row: 2 / 3;
+      grid-column: 1 / -1;
+      height: 1.5rem;
+      border-style: dashed;
+
+      &:focus {
+        outline: none;
+        border-color: blueviolet;
+      }
+    }
+  }
+}
