@@ -14,5 +14,5 @@ It's simple i know, but well, it's a start.
 ### Completed Todos - These are tasks that are marked as completed
 <img src="./assets/img/Screenshot-3.png" height="400px"  />
 
-### Edit
+### Edit Todo
 <img src="./assets/img/Screenshot-4.png" height="400px"  />
